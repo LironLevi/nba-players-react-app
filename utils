@@ -1,0 +1,34 @@
+export function filterPlayersDataByTeam(players, key) {
+  const filtered = players.filter((player) => player.team.name === key);
+  //console.log(filtered);
+  return filtered;
+}
+
+// Our function to filter the data based on the user selection
+// See the HTML select element for the filter - there are 3 possible values, which in this function are the "key"
+// 1. "posC" , 2. "posF", 3. "posG"
+export function filterPlayersDataByPos(players, key) {
+  if (key === "-") {
+    return players;
+  }
+  const filtered = players.filter((player) => player.position.includes(key));
+  return filtered;
+}
+
+// Our function to sort the data based on the user selection
+// See the HTML select element for the sort - there are 3 possible values, which in this function are the "key"
+// 1. "sortFN" means Sort by first names  2. "sortLN" means Sort by last names  3. "sortTN" means Sort by players team name
+export function sortPlayersData(players, key) {
+  let sortedPlayers = null;
+  if (key === "sortFN") {
+    sortedPlayers = players.sort((p1, p2) =>
+      p1.first_name > p2.first_name ? 1 : p1.first_name < p2.first_name ? -1 : 0
+    );
+  }
+  if (key === "sortLN") {
+    sortedPlayers = players.sort((p1, p2) =>
+      p1.last_name > p2.last_name ? 1 : p1.last_name < p2.last_name ? -1 : 0
+    );
+  }
+  return sortedPlayers;
+}

@@ -5,7 +5,7 @@ export default function AboutPage() {
     <div className="row">
       <div className="item">
         <div className="content">
-          This app is all about Australian Football.
+          This app is all about NBA Players.
         </div>
       </div>
     </div>
