@@ -16,7 +16,9 @@ import {
 // Our main page. Here we are loading data "on the client"
 // And showing some loading screen(s) while waiting for the data to be ready
 export default function IndexPage() {
-  const [options, setOptions] = useState([]);
+  const [teamsOptions, setTeamsOptions] = useState([]);
+  const [filterTeamKey, setFilterTeamKey] = useState();
+
   const {
     data: teams,
     isLoading: isLoadteamsingt,
@@ -25,18 +27,30 @@ export default function IndexPage() {
 
   useEffect(() => {
     if (teams && teams.data) {
-      setOptions(teams.data.map((team) => ({ name: team.name, id: team.id })));
+      setFilterTeamKey(teams.data[0].name);
+      setTeamsOptions(
+        Object.assign(
+          {},
+          ...teams.data.map((team) => ({
+            [team.name]: {
+              id: team.id,
+              city: team.city,
+              abbreviation: team.abbreviation,
+            },
+          }))
+        )
+      );
     }
   }, [teams]);
 
   const { data, isLoading, isError } = usePlayersData();
+  const [allPlayers, setAllPlayers] = useState([]);
 
-  const [filterTeamKey, setFilterTeamKey] = useState();
   useEffect(() => {
-    if (options[0] && options[0].name) {
-      setFilterTeamKey(options[0].name);
+    if (data) {
+      setAllPlayers(data.flatMap((obj) => obj.data));
     }
-  }, [options]);
+  }, [data]);
 
   const [sortKey, setSortKey] = useState("sortFN");
   const [filterPosKey, setFilterPosKey] = useState("-");
@@ -44,7 +58,6 @@ export default function IndexPage() {
   function getDataQueryKeys(event) {
     if (event.target.id === "data-filter-teams") {
       setFilterTeamKey(event.target.value);
-      //console.log(event.target.value);
     }
     if (event.target.id === "data-sort") {
       setSortKey(event.target.value);
@@ -55,23 +68,26 @@ export default function IndexPage() {
   }
 
   if (isLoading || isLoadteamsingt) return <Message content="Loading..." />;
-  if (isError || isError) return <Message content="An error occured..." />;
+  if (isError || isErrort) return <Message content="An error occured..." />;
   if (!data || !teams) return <Message content="No data could be loaded..." />;
 
-  // Just for convenience
-
-  const players = sortPlayersData(
-    filterPlayersDataByPos(
-      filterPlayersDataByTeam(data, filterTeamKey),
-      filterPosKey
-    ),
-    sortKey
-  );
-  console.log(players);
+  let players;
+  if (allPlayers.length > 0) {
+    players = filterPlayersDataByTeam(allPlayers, filterTeamKey);
+    players = filterPlayersDataByPos(players, filterPosKey);
+    players = sortPlayersData(players, sortKey);
+    console.log("players after filtering:", players);
+  } else {
+    players = [];
+  }
 
   return (
     <>
-      <DataIntro changeHandler={getDataQueryKeys} options={options} />
+      <DataIntro
+        changeHandler={getDataQueryKeys}
+        teamsOptions={teamsOptions}
+        selectedTeam={filterTeamKey}
+      />
       <PlayersList players={players} />
     </>
   );

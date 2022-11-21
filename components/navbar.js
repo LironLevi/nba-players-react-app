@@ -11,7 +11,7 @@ export default function Navbar() {
     <div id="navbar">
       <div className="container">
         <div className="row navbar-items">
-          <div className="item navbar-logo">
+          <div className="item navbar-logo-title">
             <div>
               <Image
                 alt="nba logo"

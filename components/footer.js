@@ -6,12 +6,10 @@ export default function Footer() {
       <div className="container">
         <div className="row">
           <div className="item">
-            <div className="content">
-              &copy; NBA Players 2018-2019
-            </div>
+            <div className="content">&copy; NBA Players from all seasons.</div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

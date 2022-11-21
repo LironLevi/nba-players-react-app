@@ -1,12 +1,19 @@
 :root {
-  --font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-    "Arial", sans-serif;
+  --font-family: "Verdana", "Helvetica", "Arial", sans-serif;
+
   --deep-blue: rgb(49, 11, 218);
   --deep-red: rgb(239, 6, 72);
   --white: #fbfafa;
   --charcoal: rgb(45, 43, 43);
   --layout-guide-item: rgba(255, 89, 0, 0.975);
   --layout-guide-content: rgb(0, 183, 255);
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--charcoal);
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -36,45 +43,38 @@
   padding: 0;
 }
 
-.control-container {
-}
-
-.control-container .content {
-  /* border: 1px solid var(--charcoal); */
-  /* color: var(--white); */
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
-  line-height: 1.25;
-  margin: 0 0px;
-}
-
 /* adjustments for medium screens, like some tablets or landscape on a mobile */
+/* 576px and more */
 @media (min-width: 576px) {
-  .item.control-container {
-    flex-basis: 33.33333333333333333333333333333333333%;
+  .item.navbar-logo-title,
+  .item.navbar-menu {
+    flex-basis: auto;
   }
 
+  .item.control-container {
+    flex-basis: 100%;
+  }
   .item.control {
-    flex-basis: 33.33333333333333333333333333333333333%;
+    flex-basis: auto;
+  }
+  .item.card {
+    flex-basis: 50%;
   }
 }
 
 /* adjustments for medium-large screens, like some tablets */
+/* 768px and more */
 @media (min-width: 768px) {
-  .item.navbar-logo,
-  .item.navbar-menu {
-    flex-basis: 50%;
+  .item.control-container {
+    flex-basis: auto;
   }
-
-  .item.card {
-    flex-basis: 50%;
-  }
-
-  .item.intro {
-    flex-basis: 100%;
+  .item.control-container {
+    flex-basis: auto;
   }
 }
 
 /* adjustments for large screens, like laptops and desktops */
+/* 992px and more */
 @media (min-width: 992px) {
   .container {
     width: 992px;
@@ -86,10 +86,8 @@
   }
 }
 
-body {
-  font-family: var(--font-family);
-  margin: 0;
-  padding: 0;
+main.container {
+  min-height: calc(100vh - 170px);
 }
 
 a {
@@ -107,27 +105,6 @@ button {
   /* border: 1px solid var(--charcoal); */
 }
 
-select,
-option {
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
-  margin-left: 3px;
-  line-height: 1.25;
-  border-radius: 0.25rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  background-color: #f9f8f7;
-  color: var(--charcoal);
-}
-#filter {
-  padding-top: 0.4rem;
-  padding-right: 0.1rem;
-  line-height: 1.25;
-  font-weight: 700;
-  color: var(--charcoal);
-}
-
 textarea {
   height: 4rem;
 }
@@ -136,22 +113,13 @@ button {
   height: 2.5rem;
 }
 
-form > * {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
-  font-family: var(--font-family);
-}
-
-/* .control select {
-  max-width: max-content;
-} */
+/* navbar style */
 
 #navbar {
+  margin-bottom: 20px;
   display: flex;
   background-color: var(--charcoal);
   color: var(--white);
-  /* border-bottom: 4px solid var(--deep-red); */
 }
 
 #navbar a {
@@ -173,52 +141,75 @@ form > * {
   margin: 0 0.5rem;
 }
 
-.navbar-logo {
+.navbar-logo-title {
   display: flex;
   font-size: 3rem;
   font-weight: 700;
 }
 
-.navbar-logo a {
-  color: var(--white);
+.navbar-logo-title a {
   text-decoration: none;
 }
 
+/* data intro style */
+
+.control-container .content {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  line-height: 1.25;
+  margin: 0 0px;
+}
+
+.item.control.text {
+  padding: 0.4rem 0.1rem 0.5rem 0.4rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.item.control {
+  flex-basis: auto;
+}
+
+.item.control select,
+.item.control option {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  margin-left: 3px;
+  line-height: 1.25;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  background-color: var(--white);
+}
+
+/* cards style */
+
 .card-content {
+  background-color: var(--white);
   border-radius: 0.35rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-top: 6px solid var(--charcoal);
   margin: 8px 8px 0px 8px;
 }
 
-.card-content p {
-  font-style: italic;
-}
-
-.card-content .card-title,
-.card-content .card-image {
-  margin-bottom: 10px;
+.content.card-content {
+  padding-left: 20px;
 }
 
 .card-content .item.card-title {
   flex-basis: 100%;
 }
 
-.card-content .item.card-image {
-  flex-basis: 33.33333333333333333%;
-}
+/* .card-content p {
+  font-style: italic;
+} */
+
+/* footer style */
 
 #footer {
   display: flex;
-  margin-top: auto;
+  margin-top: 20px;
   background-color: var(--charcoal);
   color: var(--white);
-  height: 200px;
-  /* border-top: 4px solid var(--deep-red); */
-}
-
-.intro {
-  font-size: 1.25rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  height: 100px;
 }

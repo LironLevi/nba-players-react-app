@@ -1,6 +1,6 @@
 export function filterPlayersDataByTeam(players, key) {
+  console.log(key);
   const filtered = players.filter((player) => player.team.name === key);
-  //console.log(filtered);
   return filtered;
 }
 

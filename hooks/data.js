@@ -28,17 +28,11 @@ const getKey = (pageIndex, previousPageData) => {
   // reached the end
   if (previousPageData && !previousPageData.data) return null;
 
-  // add the cursor to the API endpoint
   return `${API_PLAYERS_ENDPOINT}?page=${pageIndex + 1}&${MAX_SIZE_PAGE}`;
 };
 
 export function usePlayersData() {
-  let { data, error } = useSWRInfinite(getKey, fetcher, { initialSize: 15 });
-
-  if (data) data = data.flatMap((obj) => obj.data);
-  else data = [];
-
-  //console.log(data);
+  const { data, error } = useSWRInfinite(getKey, fetcher, { initialSize: 15 });
   return {
     data,
     isLoading: !error && !data,
