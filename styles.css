@@ -1,12 +1,13 @@
 :root {
   --font-family: "Verdana", "Helvetica", "Arial", sans-serif;
-
-  --deep-blue: rgb(49, 11, 218);
-  --deep-red: rgb(239, 6, 72);
   --white: #fbfafa;
   --charcoal: rgb(45, 43, 43);
+  --gray: #eaeaea;
+
+  /* --deep-blue: rgb(49, 11, 218);
+  --deep-red: rgb(239, 6, 72);
   --layout-guide-item: rgba(255, 89, 0, 0.975);
-  --layout-guide-content: rgb(0, 183, 255);
+  --layout-guide-content: rgb(0, 183, 255); */
 }
 
 body {
@@ -101,16 +102,25 @@ button {
   height: 2rem;
   width: 100%;
   margin: 0;
-  padding: 0.25rem;
+  padding: 0.5rem;
   /* border: 1px solid var(--charcoal); */
 }
 
 textarea {
-  height: 4rem;
+  height: 5rem;
 }
 
 button {
   height: 2.5rem;
+  background-color: var(--gray);
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+form > * {
+  margin-top: 1rem;
+  box-sizing: border-box;
+  font-family: var(--font-family);
 }
 
 /* navbar style */
@@ -171,7 +181,7 @@ button {
 
 .item.control select,
 .item.control option {
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
   margin-left: 3px;
   line-height: 1.25;
   border-radius: 0.25rem;

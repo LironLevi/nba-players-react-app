@@ -5,9 +5,9 @@ export default function AboutPage() {
     <div className="row">
       <div className="item">
         <div className="content">
-          This app is all about NBA Players.
+          This app is about NBA Players from all seasons.
         </div>
       </div>
     </div>
-  )
+  );
 }
