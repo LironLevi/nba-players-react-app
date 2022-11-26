@@ -2,8 +2,6 @@ import { CONTACT_FORM_TABLE_NAME } from "../../config";
 import { client } from "../../datastore";
 
 export default async function handler(req, res) {
-  console.log("liron");
-  console.log(res);
   // Don't allow methods we don't support
   if (req.method !== "POST") {
     res.status(405).send({ message: "Unsupported request method" });
@@ -12,8 +10,6 @@ export default async function handler(req, res) {
 
   // explicitly getting the fields we support for safety and consistency
   const { name, email, comment } = req.body;
-
-  console.log(res);
 
   // write our data to the database
   try {
