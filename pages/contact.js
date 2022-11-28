@@ -50,18 +50,18 @@ export default function ContactPage() {
   return (
     <div className="row">
       <div className="item">
-        <div className="content">
-          Contact me if you found any mistakes or missing data, or if you just
-          want to say hello!
-        </div>
-        <div className="content">
-          {formResponseStatus ? (
+        {formResponseStatus ? (
+          <div className="content">
+            {formResponseStatus === 200
+              ? "Thank you! Your message has been sent successfully."
+              : "Something went wrong. Failed to send message."}
+          </div>
+        ) : (
+          <div className="content">
             <div>
-              {formResponseStatus === 200
-                ? "Thank you."
-                : "Something went wrong."}
+              Contact us if you found any mistakes or missing data, or if you
+              just want to say hello!
             </div>
-          ) : (
             <form onSubmit={handleSubmit}>
               <input
                 id="form-name"
@@ -86,8 +86,8 @@ export default function ContactPage() {
               ></textarea>
               <button type="submit">Send</button>
             </form>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

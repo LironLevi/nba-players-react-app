@@ -103,11 +103,12 @@ button {
   width: 100%;
   margin: 0;
   padding: 0.5rem;
+  cursor: pointer;
   /* border: 1px solid var(--charcoal); */
 }
 
 textarea {
-  height: 5rem;
+  height: 7rem;
 }
 
 button {
@@ -194,6 +195,10 @@ form > * {
 
 /* cards style */
 
+.item.card {
+  display: grid;
+}
+
 .card-content {
   background-color: var(--white);
   border-radius: 0.35rem;
@@ -209,10 +214,6 @@ form > * {
 .card-content .item.card-title {
   flex-basis: 100%;
 }
-
-/* .card-content p {
-  font-style: italic;
-} */
 
 /* footer style */
 
